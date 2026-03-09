@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Optimizer Pro — by nostyyy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#050d1a;--surface:#0a1628;--card:#0f1f35;--border:#1a3555;--cyan:#00d4ff;--blue:#0080ff;--text:#e0f0ff;--muted:#5a8aaa;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-weight:300;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,212,255,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03)1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+  .amb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none;z-index:0;}
+  .a1{width:600px;height:600px;background:#0080ff;top:-200px;left:-200px;animation:d1 12s ease-in-out infinite alternate;}
+  .a2{width:500px;height:500px;background:#00d4ff;bottom:-150px;right:-150px;animation:d2 10s ease-in-out infinite alternate;}
+  .a3{width:400px;height:400px;background:#0040aa;top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse 6s ease-in-out infinite;}
+  @keyframes d1{from{transform:translate(0,0)}to{transform:translate(60px,40px)}}
+  @keyframes d2{from{transform:translate(0,0)}to{transform:translate(-40px,-60px)}}
+  @keyframes pulse{0%,100%{opacity:.08}50%{opacity:.18}}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(5,13,26,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);gap:20px;}
+  .nav-logo{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:900;letter-spacing:3px;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;flex-shrink:0;}
+  .nav-badge{display:flex;align-items:center;gap:8px;background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.18);border-radius:8px;padding:5px 14px;font-size:.72rem;color:var(--muted);letter-spacing:.5px;white-space:nowrap;flex-shrink:0;}
+  .nav-badge strong{color:var(--cyan);}
+  .nav-links{display:flex;gap:4px;align-items:center;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.5px;text-transform:uppercase;transition:color .25s;padding:6px 11px;border-radius:6px;cursor:pointer;white-space:nowrap;}
+  .nav-links a:hover{color:var(--cyan);background:rgba(0,212,255,0.06);}
+  .nav-cta{background:linear-gradient(135deg,var(--blue),var(--cyan))!important;color:#fff!important;padding:7px 18px!important;border-radius:7px!important;font-weight:600!important;text-transform:none!important;letter-spacing:0!important;box-shadow:0 0 18px rgba(0,128,255,.35);}
+  .nav-cta:hover{box-shadow:0 0 32px rgba(0,212,255,.55)!important;transform:translateY(-1px);background:rgba(0,0,0,0)!important;}
+
+  /* HERO */
+  #hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:999px;padding:6px 18px;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:32px;animation:fdDown .8s ease both;}
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:blink 1.5s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{font-family:'Orbitron',monospace;font-size:clamp(2.8rem,8vw,6rem);font-weight:900;line-height:1.05;letter-spacing:-1px;margin-bottom:8px;animation:fdDown .9s ease .1s both;}
+  h1 .gr{background:linear-gradient(135deg,#fff 20%,var(--cyan) 60%,var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  h1 .l2{background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
+  .hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.7;margin:24px auto 48px;animation:fdDown 1s ease .2s both;}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fdDown 1s ease .35s both;}
+  .btn-p{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:.5px;transition:transform .2s,box-shadow .3s;box-shadow:0 0 30px rgba(0,128,255,.4);display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;}
+  .btn-p:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,212,255,.5);}
+  .btn-g{background:transparent;color:var(--muted);padding:16px 32px;border-radius:8px;text-decoration:none;font-size:.9rem;border:1px solid var(--border);transition:all .25s;cursor:pointer;font-family:inherit;}
+  .btn-g:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  /* MOCKUP */
+  .mwrap{position:relative;margin-top:80px;width:100%;max-width:700px;animation:fdDown 1.1s ease .5s both;}
+  .mglow{position:absolute;inset:-40px;background:radial-gradient(ellipse,rgba(0,128,255,.15),transparent 70%);pointer-events:none;}
+  .mockup{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5),0 0 0 1px rgba(0,212,255,.1);}
+  .mbar{background:var(--surface);padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+  .mdot{width:12px;height:12px;border-radius:50%;}
+  .d1{background:#ff5f57}.d2{background:#ffbd2e}.d3{background:#28c840}
+  .mtitle{margin-left:8px;font-size:.8rem;color:var(--muted);letter-spacing:1px;}
+  .mbody{padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .sc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 16px;text-align:center;}
+  .si{font-size:1.6rem;margin-bottom:8px;}
+  .sv{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--cyan);}
+  .sl{font-size:.7rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+  .pbw{grid-column:1/-1;}
+  .pbl{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:8px;}
+  .pb{background:var(--surface);border-radius:999px;height:6px;overflow:hidden;border:1px solid var(--border);}
+  .pf{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan));animation:grow 2s ease 1.5s both;}
+  @keyframes grow{from{width:0}}
+
+  /* SECTIONS */
+  section:not(#hero){position:relative;z-index:1;padding:100px 24px;}
+  .slabel{display:flex;align-items:center;gap:12px;font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:20px;}
+  .slabel::after{content:'';flex:1;max-width:60px;height:1px;background:var(--cyan);opacity:.4;}
+  .stitle{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.2;margin-bottom:60px;max-width:700px;}
+
+  /* FEATURES */
+  .fgrid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+  .fc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;--mx:50%;--my:50%;}
+  .fc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(0,212,255,.08),transparent 60%);opacity:0;transition:opacity .4s;}
+  .fc::after{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .4s;}
+  .fc:hover{border-color:rgba(0,212,255,.35);transform:translateY(-4px);}
+  .fc:hover::before,.fc:hover::after{opacity:1;}
+  .fi{width:52px;height:52px;background:linear-gradient(135deg,rgba(0,128,255,.2),rgba(0,212,255,.1));border:1px solid rgba(0,212,255,.25);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;}
+  .fc h3{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;letter-spacing:1px;margin-bottom:12px;color:#fff;}
+  .fc p{font-size:.88rem;line-height:1.7;color:var(--muted);}
+
+  /* ABOUT */
+  #about{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);}
+  .ai{max-width:1100px;margin:0 auto;}
+  .srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;text-align:center;margin-bottom:60px;}
+  .bnum{font-family:'Orbitron',monospace;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+  .blbl{color:var(--muted);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-top:8px;}
+
+  /* AUTHOR CARD */
+  .acard{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;display:flex;align-items:center;gap:32px;max-width:700px;margin:0 auto;position:relative;overflow:hidden;}
+  .acard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+  .aav{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;box-shadow:0 0 30px rgba(0,212,255,.3);}
+  .ainf h3{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px;}
+  .ainf p{color:var(--muted);font-size:.88rem;line-height:1.6;}
+  .alinks{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;}
+  .al{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:600;transition:all .25s;}
+  .al.tg{background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.35);color:#29a9e1;}
+  .al.tg:hover{background:rgba(0,136,204,.3);border-color:#29a9e1;transform:translateY(-2px);}
+  .al.ch{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:var(--cyan);}
+  .al.ch:hover{background:rgba(0,212,255,.2);transform:translateY(-2px);}
+
+  /* DOWNLOAD */
+  #download{text-align:center;}
+  .dbox{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:64px 48px;position:relative;overflow:hidden;}
+  .dbox::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+  .dbox p{color:var(--muted);margin-bottom:40px;font-size:.95rem;line-height:1.7;}
+  .tgl{display:inline-flex;align-items:center;gap:12px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.4);border-radius:10px;padding:18px 32px;color:#29a9e1;text-decoration:none;font-weight:600;font-size:1rem;transition:all .3s;}
+  .tgl:hover{background:rgba(0,136,204,.25);border-color:#29a9e1;transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,136,204,.3);}
+
+  /* FOOTER */
+  footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .flogo{font-family:'Orbitron',monospace;font-size:.75rem;letter-spacing:3px;color:var(--muted);}
+  .flinks{display:flex;gap:24px;}
+  .flinks a{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;cursor:pointer;}
+  .flinks a:hover{color:var(--cyan);}
+  .fcopy{color:var(--muted);font-size:.75rem;}
+
+  /* ANIM */
+  @keyframes fdDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){nav{padding:0 16px;}.nav-badge{display:none;}}
+  @media(max-width:640px){.nav-links a:not(.nav-cta):not([href*="t.me"]){display:none;}.mbody{grid-template-columns:repeat(2,1fr);}.pbw{grid-column:1/-1;}.acard{flex-direction:column;text-align:center;padding:28px;}.alinks{justify-content:center;}.dbox{padding:40px 24px;}footer{flex-direction:column;text-align:center;}}
+</style>
+</head>
+<body>
+
+<div class="amb a1"></div>
+<div class="amb a2"></div>
+<div class="amb a3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PC OPTIMIZER PRO</div>
+
+  <div class="nav-badge">
+    v<strong>5.1</strong>&nbsp;·&nbsp;Win&nbsp;<strong>10/11</strong>&nbsp;·&nbsp;by&nbsp;<strong>@nostyyy</strong>
+  </div>
+
+  <div class="nav-links">
+    <a onclick="scrollSec('features')">Функции</a>
+    <a onclick="scrollSec('about')">О программе</a>
+    <a onclick="scrollSec('download')">Скачать</a>
+    <a href="https://t.me/nostyyy" target="_blank" rel="noopener">@nostyyy</a>
+    <a href="https://t.me/pc_optimizer_pro" class="nav-cta" target="_blank" rel="noopener">📢 Канал</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="badge"><span class="badge-dot"></span>Версия 5.1 — Актуально</div>
+  <h1><span class="gr">PC OPTIMIZER</span><span class="l2">PRO</span></h1>
+  <p class="hero-sub">Профессиональная оптимизация Windows.<br>Очистка, защита, ускорение — всё в одном инструменте.</p>
+  <div class="hero-btns">
+    <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener" class="btn-p">⬇ Скачать бесплатно</a>
+    <button class="btn-g" onclick="scrollSec('features')">Подробнее →</button>
+  </div>
+  <div class="mwrap">
+    <div class="mglow"></div>
+    <div class="mockup">
+      <div class="mbar">
+        <div class="mdot d1"></div><div class="mdot d2"></div><div class="mdot d3"></div>
+        <div class="mtitle">PC OPTIMIZER PRO — by nostyyy</div>
+      </div>
+      <div class="mbody">
+        <div class="sc"><div class="si">🧹</div><div class="sv">2.4 GB</div><div class="sl">Очищено</div></div>
+        <div class="sc"><div class="si">🛡️</div><div class="sv">17</div><div class="sl">Угроз устранено</div></div>
+        <div class="sc"><div class="si">⚡</div><div class="sv">+38%</div><div class="sl">Производительность</div></div>
+        <div class="pbw">
+          <div class="pbl"><span>Оптимизация памяти</span><span style="color:var(--cyan)">74%</span></div>
+          <div class="pb"><div class="pf" style="width:74%"></div></div>
+        </div>
+        <div class="pbw">
+          <div class="pbl"><span>Очистка диска</span><span style="color:var(--cyan)">91%</span></div>
+          <div class="pb"><div class="pf" style="width:91%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="slabel">Возможности</div>
+  <div class="stitle">Всё, что нужно<br>для идеального ПК</div>
+  <div class="fgrid">
+    <div class="fc reveal"><div class="fi">🧹</div><h3>Глубокая очистка</h3><p>Удаляет временные файлы, кэш браузеров, мусор реестра и системные остатки. Освобождает гигабайты пространства.</p></div>
+    <div class="fc reveal"><div class="fi">🛡️</div><h3>Защита в реальном времени</h3><p>Встроенный антивирусный модуль сканирует процессы и файлы, блокируя угрозы до их активации.</p></div>
+    <div class="fc reveal"><div class="fi">⚡</div><h3>Буст производительности</h3><p>Оптимизация оперативной памяти, приоритетов процессов и настроек Windows для максимальной скорости.</p></div>
+    <div class="fc reveal"><div class="fi">🤖</div><h3>AI-советник</h3><p>Искусственный интеллект анализирует состояние системы и даёт персональные рекомендации по оптимизации.</p></div>
+    <div class="fc reveal"><div class="fi">👤</div><h3>Мультиаккаунт</h3><p>Поддержка нескольких профилей на одном ПК. Быстрое переключение между аккаунтами с сохранением настроек.</p></div>
+    <div class="fc reveal"><div class="fi">📊</div><h3>Мониторинг системы</h3><p>Отслеживание нагрузки CPU, RAM, дисков и температур в реальном времени с историей и графиками.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="ai">
+    <div class="slabel">О программе</div>
+    <div class="stitle">Цифры говорят сами за себя</div>
+    <div class="srow">
+      <div class="reveal"><div class="bnum">5.1</div><div class="blbl">Текущая версия</div></div>
+      <div class="reveal"><div class="bnum">24/7</div><div class="blbl">Работа в фоне</div></div>
+      <div class="reveal"><div class="bnum">Win</div><div class="blbl">10 / 11</div></div>
+      <div class="reveal"><div class="bnum">0₽</div><div class="blbl">Бесплатно</div></div>
+    </div>
+    <div class="acard reveal">
+      <div class="aav">👨‍💻</div>
+      <div class="ainf">
+        <h3>@nostyyy</h3>
+        <p>Разработчик и автор PC Optimizer Pro. Создал инструмент для быстрой и безопасной оптимизации Windows — без лишних кнопок, без вреда системе.</p>
+        <div class="alinks">
+          <a href="https://t.me/nostyyy" class="al tg" target="_blank" rel="noopener">✈ @nostyyy</a>
+          <a href="https://t.me/pc_optimizer_pro" class="al ch" target="_blank" rel="noopener">📢 Канал обновлений</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="dbox reveal">
+    <div class="slabel" style="justify-content:center;">Скачать</div>
+    <div class="stitle" style="margin:0 auto 16px;">Начни прямо сейчас</div>
+    <p>Подпишись на официальный Telegram-канал, чтобы получить последнюю версию PC Optimizer Pro и следить за обновлениями.</p>
+    <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener" class="tgl">✈️ t.me/pc_optimizer_pro</a>
+    <br><br>
+    <p style="font-size:.8rem;margin-bottom:0;">Разработчик: <a href="https://t.me/nostyyy" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">@nostyyy</a> · Техподдержка в боте канала</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">PC OPTIMIZER PRO · BY @nostyyy</div>
+  <div class="flinks">
+    <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener">Канал</a>
+    <a href="https://t.me/nostyyy" target="_blank" rel="noopener">@nostyyy</a>
+    <a onclick="scrollSec('features')">Функции</a>
+  </div>
+  <div class="fcopy">© 2026 PC Optimizer Pro</div>
+</footer>
+
+<script>
+function scrollSec(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);io.unobserve(e.target);}
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+document.querySelectorAll('.fc').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+</script>
+</body>
+</html>
