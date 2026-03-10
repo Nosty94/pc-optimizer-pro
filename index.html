@@ -10,7 +10,7 @@
   :root{--bg:#050d1a;--surface:#0a1628;--card:#0f1f35;--border:#1a3555;--cyan:#00d4ff;--blue:#0080ff;--text:#e0f0ff;--muted:#5a8aaa;}
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-weight:300;overflow-x:hidden;}
+  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-weight:300;overflow-x:hidden;padding-bottom:60px;}
   body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,212,255,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03)1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
   .amb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none;z-index:0;}
   .a1{width:600px;height:600px;background:#0080ff;top:-200px;left:-200px;animation:d1 12s ease-in-out infinite alternate;}
@@ -45,6 +45,12 @@
   .btn-p:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,212,255,.5);}
   .btn-g{background:transparent;color:var(--muted);padding:16px 32px;border-radius:8px;text-decoration:none;font-size:.9rem;border:1px solid var(--border);transition:all .25s;cursor:pointer;font-family:inherit;}
   .btn-g:hover{border-color:var(--cyan);color:var(--cyan);}
+  .btn-site{background:rgba(0,212,255,.07);color:var(--cyan);padding:16px 32px;border-radius:8px;text-decoration:none;font-size:.9rem;font-weight:600;border:1px solid rgba(0,212,255,.2);transition:all .25s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-site:hover{border-color:var(--cyan);background:rgba(0,212,255,.14);transform:translateY(-2px);}
+  .sitel{display:inline-flex;align-items:center;gap:12px;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.25);border-radius:10px;padding:18px 32px;color:var(--cyan);text-decoration:none;font-weight:600;font-size:1rem;transition:all .3s;}
+  .sitel:hover{background:rgba(0,212,255,.15);border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,212,255,.2);}
+  .al.site{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);color:#00ff88;}
+  .al.site:hover{background:rgba(0,255,136,.15);transform:translateY(-2px);}
 
   /* MOCKUP */
   .mwrap{position:relative;margin-top:80px;width:100%;max-width:700px;animation:fdDown 1.1s ease .5s both;}
@@ -106,7 +112,12 @@
   #download{text-align:center;}
   .dbox{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:64px 48px;position:relative;overflow:hidden;}
   .dbox::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
-  .dbox p{color:var(--muted);margin-bottom:40px;font-size:.95rem;line-height:1.7;}
+  .dbox p{color:var(--muted);margin-bottom:24px;font-size:.95rem;line-height:1.7;}
+  .dl-btn{display:inline-flex;align-items:center;gap:16px;background:linear-gradient(135deg,#0057a8,#0099cc);border:none;border-radius:14px;padding:18px 36px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem;transition:all .3s;margin-bottom:4px;box-shadow:0 8px 32px rgba(0,100,200,.35);}
+  .dl-btn:hover{background:linear-gradient(135deg,#0099cc,#00c6f7);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,150,220,.45);}
+  .dl-btn .dl-icon{font-size:1.8rem;line-height:1;}
+  .dl-btn strong{display:block;font-size:1rem;letter-spacing:.2px;}
+  .dl-btn small{display:block;font-size:.75rem;opacity:.8;font-weight:400;margin-top:2px;}
   .tgl{display:inline-flex;align-items:center;gap:12px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.4);border-radius:10px;padding:18px 32px;color:#29a9e1;text-decoration:none;font-weight:600;font-size:1rem;transition:all .3s;}
   .tgl:hover{background:rgba(0,136,204,.25);border-color:#29a9e1;transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,136,204,.3);}
 
@@ -128,6 +139,12 @@
 </style>
 </head>
 <body>
+
+<!-- DEVICE BANNER -->
+<div id="device-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(4,9,26,.95);backdrop-filter:blur(20px);border-top:1px solid rgba(0,212,255,.2);padding:12px 24px;text-align:center;font-size:.84rem;color:#4a7fa0;">
+  <span id="banner-text"></span>
+  <button onclick="document.getElementById('device-banner').style.display='none'" style="margin-left:16px;background:transparent;border:none;color:#4a7fa0;cursor:pointer;font-size:1rem;">✕</button>
+</div>
 
 <div class="amb a1"></div>
 <div class="amb a2"></div>
@@ -156,7 +173,8 @@
   <h1><span class="gr">PC OPTIMIZER</span><span class="l2">PRO</span></h1>
   <p class="hero-sub">Профессиональная оптимизация Windows.<br>Очистка, защита, ускорение — всё в одном инструменте.</p>
   <div class="hero-btns">
-    <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener" class="btn-p">⬇ Скачать бесплатно</a>
+    <a href="https://github.com/nosty94/pc-optimizer-pro/releases/latest/download/PCOptimizerPro.exe" class="btn-p" download>⬇ Скачать бесплатно</a>
+    <a href="https://nosty94.github.io/pc-optimizer-pro/" target="_blank" rel="noopener" class="btn-site">🌐 Официальный сайт</a>
     <button class="btn-g" onclick="scrollSec('features')">Подробнее →</button>
   </div>
   <div class="mwrap">
@@ -216,6 +234,7 @@
         <div class="alinks">
           <a href="https://t.me/nostyyy" class="al tg" target="_blank" rel="noopener">✈ @nostyyy</a>
           <a href="https://t.me/pc_optimizer_pro" class="al ch" target="_blank" rel="noopener">📢 Канал обновлений</a>
+          <a href="https://nosty94.github.io/pc-optimizer-pro/" class="al site" target="_blank" rel="noopener">🌐 Официальный сайт</a>
         </div>
       </div>
     </div>
@@ -226,11 +245,34 @@
 <section id="download">
   <div class="dbox reveal">
     <div class="slabel" style="justify-content:center;">Скачать</div>
-    <div class="stitle" style="margin:0 auto 16px;">Начни прямо сейчас</div>
-    <p>Подпишись на официальный Telegram-канал, чтобы получить последнюю версию PC Optimizer Pro и следить за обновлениями.</p>
-    <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener" class="tgl">✈️ t.me/pc_optimizer_pro</a>
-    <br><br>
-    <p style="font-size:.8rem;margin-bottom:0;">Разработчик: <a href="https://t.me/nostyyy" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">@nostyyy</a> · Техподдержка в боте канала</p>
+    <div class="stitle" style="margin:0 auto 12px;">Начни прямо сейчас</div>
+    <p>Бесплатно. Только для Windows. Запускай от имени администратора.</p>
+
+    <!-- Primary download button -->
+    <a href="https://github.com/nosty94/pc-optimizer-pro/releases/latest/download/PCOptimizerPro.exe"
+       class="dl-btn" download>
+      <span class="dl-icon">⬇</span>
+      <span>
+        <strong>Скачать PC Optimizer Pro</strong>
+        <small>Windows · бесплатно · v5.1</small>
+      </span>
+    </a>
+
+    <!-- Secondary links -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;margin-bottom:24px;">
+      <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener" class="tgl" style="font-size:.85rem;padding:12px 22px;">
+        ✈️ Telegram-канал
+      </a>
+      <a href="https://nosty94.github.io/pc-optimizer-pro/" target="_blank" rel="noopener" class="sitel" style="font-size:.85rem;padding:12px 22px;">
+        🌐 Сайт проекта
+      </a>
+    </div>
+
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:0;">
+      Разработчик: <a href="https://t.me/nostyyy" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">@nostyyy</a>
+      &nbsp;·&nbsp; Поддержка в Telegram-боте
+      &nbsp;·&nbsp; <span style="color:#4ade80;">✓ Без вирусов, открытый код</span>
+    </p>
   </div>
 </section>
 
@@ -238,6 +280,7 @@
 <footer>
   <div class="flogo">PC OPTIMIZER PRO · BY @nostyyy</div>
   <div class="flinks">
+    <a href="https://nosty94.github.io/pc-optimizer-pro/" target="_blank" rel="noopener">Сайт</a>
     <a href="https://t.me/pc_optimizer_pro" target="_blank" rel="noopener">Канал</a>
     <a href="https://t.me/nostyyy" target="_blank" rel="noopener">@nostyyy</a>
     <a onclick="scrollSec('features')">Функции</a>
@@ -263,6 +306,23 @@ document.querySelectorAll('.fc').forEach(card=>{
     card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
   });
 });
+
+// Device detection banner
+(function(){
+  const ua=navigator.userAgent;
+  const isMob=/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(ua);
+  const banner=document.getElementById('device-banner');
+  const txt=document.getElementById('banner-text');
+  if(isMob){
+    txt.innerHTML='📱 <strong style="color:#00d4ff">Вы на телефоне</strong> — PC Optimizer Pro работает на Windows ПК. Зайди с компьютера и скачай бесплатно! <a href="https://nosty94.github.io/pc-optimizer-pro/" style="color:#00d4ff;text-decoration:none;font-weight:600;">→ Сайт</a>';
+    banner.style.display='block';
+  } else {
+    txt.innerHTML='🖥️ <strong style="color:#00d4ff">Вы на ПК</strong> — PC Optimizer Pro создан именно для вас! <a href="https://github.com/nosty94/pc-optimizer-pro/releases/latest/download/PCOptimizerPro.exe" style="color:#00d4ff;text-decoration:none;font-weight:600;" download>⬇ Скачать бесплатно</a>';
+    banner.style.display='block';
+  }
+  // Hide after 6 seconds
+  setTimeout(()=>{if(banner) banner.style.display='none';}, 6000);
+})();
 </script>
 </body>
 </html>
