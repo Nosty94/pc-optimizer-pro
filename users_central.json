@@ -15,7 +15,15 @@
       "telegram": "",
       "hwid": "F66ECF8ADFD067FF",
       "banned": false
+    },
+    "0598": {
+      "registered": "2026-04-19T15:08:10",
+      "machine": "LAPTOP-9SPEUN2V",
+      "windows": "10.0.26200",
+      "telegram": "",
+      "hwid": "753603EFB144A208",
+      "banned": false
     }
   },
-  "updated": "2026-03-21T09:26:22.500315"
+  "updated": "2026-04-19T15:08:10.851527"
 }
