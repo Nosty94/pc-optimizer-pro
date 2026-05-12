@@ -23,7 +23,15 @@
       "telegram": "",
       "hwid": "753603EFB144A208",
       "banned": false
+    },
+    "katashi": {
+      "registered": "2026-05-12T19:46:26.105919",
+      "machine": "LAPTOP-DRB2F3VL",
+      "windows": "10.0.26200",
+      "telegram": "",
+      "hwid": "60EC7FC34B99D5C1",
+      "banned": false
     }
   },
-  "updated": "2026-04-19T15:08:10.851527"
+  "updated": "2026-05-12T19:46:26.820648"
 }
