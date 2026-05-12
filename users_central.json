@@ -31,7 +31,15 @@
       "telegram": "",
       "hwid": "60EC7FC34B99D5C1",
       "banned": false
+    },
+    "Guest_LAPTOP-DRB2F": {
+      "registered": "2026-05-12T19:46:32",
+      "machine": "LAPTOP-DRB2F3VL",
+      "windows": "10.0.26200",
+      "telegram": "",
+      "hwid": "60EC7FC34B99D5C1",
+      "banned": false
     }
   },
-  "updated": "2026-05-12T19:46:26.820648"
+  "updated": "2026-05-12T19:46:33.271009"
 }
