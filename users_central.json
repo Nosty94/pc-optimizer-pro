@@ -25,11 +25,11 @@
       "banned": false
     },
     "katashi": {
-      "registered": "2026-05-14T02:35:18",
+      "registered": "2026-05-20T00:02:42",
       "machine": "LAPTOP-DRB2F3VL",
       "windows": "10.0.26200",
       "telegram": "",
-      "hwid": "B82DADB93498ED4E",
+      "hwid": "0BC1944E8C32F993",
       "banned": false
     },
     "Guest_LAPTOP-DRB2F": {
@@ -41,5 +41,5 @@
       "banned": false
     }
   },
-  "updated": "2026-05-14T02:35:19.138031"
+  "updated": "2026-05-20T00:02:43.468942"
 }
