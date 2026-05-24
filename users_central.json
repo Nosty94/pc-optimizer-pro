@@ -39,7 +39,15 @@
       "telegram": "",
       "hwid": "60EC7FC34B99D5C1",
       "banned": false
+    },
+    "Guest_DESKTOP-VCL9": {
+      "registered": "2026-05-24T13:59:47",
+      "machine": "DESKTOP-VCL9HII",
+      "windows": "10.0.19045",
+      "telegram": "",
+      "hwid": "C0406A25534B1FB4",
+      "banned": false
     }
   },
-  "updated": "2026-05-20T00:05:46.353644"
+  "updated": "2026-05-24T13:59:48.273799"
 }
